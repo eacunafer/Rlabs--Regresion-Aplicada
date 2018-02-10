@@ -1,0 +1,64 @@
+---
+title: "Laboratorio 1 de Regresion"
+output:
+  word_document: default
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+Regresion lineal simple en R
+
+Creado por Edgar Acuna
+ 
+Febrero del 2018
+
+```{r}
+#*****************************************
+#Leyendo los datos del archivo mortalidad.txt
+muertes=read.table("http://academic.uprm.edu/eacuna/mortalidad.txt",header=T)
+#Mostrando los datos
+library(knitr)
+kable(muertes)
+#Haciendo un plot de tasa de mortalidad versus porcentaje de inmunizacion
+x=muertes$porc.inmuniz
+y=muertes$tasa.mort
+mean(x)
+mean(y)
+plot(x,y,xlab="porcentaje de inmunizacion", ylab="tasa de mortalidad")
+title("regresion de tasa de mortalidad versus porcentaje de inmunizacion")
+pais=muertes$nacion
+text(x,y,labels=as.character(pais),cex=.65,col="red",srt=30)
+```
+
+```{r}
+#Haciendo el ajuste por minimos cuadrados
+l1<-lsfit(x,y)
+#Mostrando los resultados del ajuste minimo cuadratico
+l1
+#Imprimiendo un resultado mas corto del ajuste minimocuadratico
+ls.print(l1)
+#Trazando la linea de regresión sobre el plot de puntos
+plot(x,y)
+abline(l1)
+alfa=l1$coeff[1]
+beta=l1$coeff[2]
+text(50,100,bquote(hat(y)==.(alfa)+.(beta)*x))
+```
+```{r}
+#Extrayendo las  observaciones anormales 11 y 12  y creando un 
+#nuevo conjunto muertes1
+muertes1<-muertes[-c(11,12),]
+#Haciendo el ajuste por minimos cuadrados excluyendo las 
+#observaciones anormales y ploteando la linea de regresion para el nuevo 
+#conjunto de datos
+x1=muertes1$porc.inmuniz
+y1=muertes1$tasa.mort
+l2<-lsfit(x1,y1)
+plot(x1,y1,xlab="porcentaje de inmunizacion", ylab="tasa de mortalidad")
+abline(l2)
+alfa1=l2$coeff[1]
+beta1=l2$coeff[2]
+text(50,100,bquote(hat(y)==.(alfa1)+.(beta1)*x))
+ls.print(l2)
+```
+
