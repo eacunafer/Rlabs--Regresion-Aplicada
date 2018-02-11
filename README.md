@@ -4,7 +4,15 @@ en el Departamento de Ciencias Matematicas de la Universidad de Puerto Rico Reci
 
 # Contenido
 Regresion Simple
+
 Regresion Multiple
+
 Seleccion de Variables
+
+Regresion Logistica
+
 Diagnosticos de Regresion
+
 Multicolinealidad
+
+Regresion Noparametrica
