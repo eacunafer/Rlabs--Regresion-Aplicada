@@ -5,13 +5,21 @@ en el Departamento de Ciencias Matematicas de la Universidad de Puerto Rico Reci
 # Contenido
 Regresion Simple
 
+Inferencia en Regresion Lineal Simple
+
+Correlacion
+
+Analisis de Residuales
+
 Regresion Multiple
 
 Seleccion de Variables
 
-Regresion Logistica
-
 Diagnosticos de Regresion
+
+Regresion con variables cualitativas
+
+Regresion Logistica
 
 Multicolinealidad
 
