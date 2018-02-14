@@ -45,6 +45,17 @@ points(muertes$porc.inmuniz,muertes$tasa.mort)
 bandas <- expression("intervalo media", "intervalo prediccion")
 legend(-3, 1, bandas, lty=1, col=c(2,4), cex=.7)
 abline(l2)
+#Usando ggplot2
+library(ggplot2)
+attach(muertes)
+temp_var <- predict(l2, interval="prediction")
+new_df <- cbind(muertes, temp_var)
+ggplot(new_df, aes(porc.inmuniz, tasa.mort))+
+    geom_point() +
+    geom_line(aes(y=lwr), color = "red", linetype = "dashed")+
+    geom_line(aes(y=upr), color = "red", linetype = "dashed")+
+    geom_smooth(method=lm, se=TRUE)+
+ggtitle("Bandas de Confianza y Bandas de Prediccion")
 
 
 
