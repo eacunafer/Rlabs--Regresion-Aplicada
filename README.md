@@ -1,15 +1,15 @@
 # Rlabs--Regresion-Aplicada
 Incluimos 20 laboratorios escritos en  R para una clase de regresion Aplicada. La clase es a nivel graduado y es ofrecido por el Dr. Edgar Acuna 
-en el Departamento de Ciencias Matematicas de la Universidad de Puerto Rico Recientgo de Mayaguez.
+en el Departamento de Ciencias Matematicas de la Universidad de Puerto Rico Recinto de Mayaguez.
 
 # Contenido
-Regresion Simple
+Lab1-Regresion Simple
 
-Inferencia en Regresion Lineal Simple
+Lab2-Inferencia en Regresion Lineal Simple
 
-Correlacion
+Lab3-Correlacion
 
-Analisis de Residuales
+Lab4-Analisis de Residuales
 
 Regresion Multiple
 
