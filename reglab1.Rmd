@@ -68,7 +68,7 @@ p+ggtitle("Relacion de Tasa de Mortalidad con Porcentaje de Inmunizacion") + xla
 ### Hallando la prediccion para un valor dado de X. 
 
 ```{r}
-orc.inmuniz<-79
+porc.inmuniz<-79
 porc.inmuniz<-as.data.frame(porc.inmuniz)
 predict(l3,porc.inmuniz)
 ```
