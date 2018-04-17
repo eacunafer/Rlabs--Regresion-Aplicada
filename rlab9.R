@@ -22,7 +22,7 @@ which(abs(as.vector(rstint))>2)
 #Ploteando los residuales y mostrando los outliers segun rsint
 out1=rstint[abs(rstint)>2]
 win.graph()
-par(mfrow=c(2,2))
+par(mfrow=c(1,1))
 plot(rstint)
 text(names(out1),out1,names(out1),adj=c(1,1))
 #mostrando los outliers segun rstext
