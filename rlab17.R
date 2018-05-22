@@ -5,7 +5,7 @@
 #  b) Seleccion de los mejores subconjuntos usando leaps y step con 
 # el criterio AIC. Usa la funcion selforw
 # Edgar Acuna,
-# abril 2013
+# Mayo 2018
 #*********************************************************************
 #Leyendo el archivo de datos de grasa directamente de la internet
 grasa<-read.table(file="http://academic.uprm.edu/eacuna/grasa.txt",header=T)
@@ -16,12 +16,24 @@ maxvar<-dim(grasa)[2]
 #
 #llamando a la libreria leaps
 library(leaps)
+######################################################################
 #Aplicando el metodo forward
-freg<-regsubsets(grasa~., data=grasa,method="forward",nvmax=maxvar)
+######################################################################
+#freg<-regsubsets(grasa~., data=grasa,method="forward",nvmax=maxvar)
 #Mostrando la salida de todos los pasos con la estadisticas respectiva
 selforw(grasa[,2:14],grasa[,1],.15)
-#
+#Hallando el mejor subconjunto usando stepwise y el criterio AIC
+l1<-lm(grasa~1,data=grasa)
+lall<-lm(grasa~.,data=grasa)
+step(l1,scope=list(lower=l1,upper=lall),direction="forward")
+######################################################################
+#Aplicando el metodo Backward
+######################################################################
+backelim(grasa[,2:14],grasa[,1],.15)
+step(lall,direction="backward")
+###########################################################################
 # Aplicando el metodo de los mejores subconjuntos
+###########################################################################
 #matrix  de predictoras
 grasa.x<-grasa[,2:14]
 #vector de respuesta
@@ -37,13 +49,6 @@ p<-2:maxvar
 plot(p,bcp$Cp,type="l")
 title("Grafica del Cp de Mallows segun el tamano del modelo")
 lines(2:maxvar,2:maxvar)
-#Hallando el mejor subcjunto usando stepwise y el criterio AIC
-l1<-lm(grasa~.,data=grasa)
-step(l1,scope=~.,direction="backward")
-#Hallando primero la regresion con la variable predictora mas correlacionada V7 
-
-l2=lm(grasa~abdomen,data=grasa)
-step(l2,scope=~.+edad+peso+altura+cuello+pecho+cadera+muslo+rodilla+tobillo+biceps+antebrazo+muneca,direction="forward")
 ######################################################################################################
 backelim=function(x,y,alpha){
 # Hace forward elimination using el paquete leaps 
