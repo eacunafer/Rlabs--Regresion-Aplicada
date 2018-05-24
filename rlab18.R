@@ -1,11 +1,15 @@
 #**************************************************************
-#Laboratorio 18:Funciones para calcular Press y Validacion cruzada para #Regresion 
+#Laboratorio 18:Funciones para calcular Press, Predicted R2 
+# y Validacion cruzada para Regresion 
 #Edgar Acuna
-#Mayo 2014
+#Mayo 2018
 #***************************************************************
 PRESS=function (x) 
 {#x es un objecto que sale de aplicar lm
     sum(resid(x)^2/(1 - lm.influence(x)$hat)^2)
+}
+PredR2=function(x)
+{1-PRESS(x)/sum(anova(x)[,2])
 }
 cv10reg=function(data, folds=10,repet)
 {#data: el conjunto de datos
